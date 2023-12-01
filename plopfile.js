@@ -5,7 +5,7 @@ export default function (/** @type {import('plop').NodePlopAPI} */ plop) {
     actions: [
       {
         type: "add",
-        path: "src/components/{{titleCase name}}/Index.tsx",
+        path: "src/components/{{titleCase name}}/{{titleCase name}}.tsx",
         templateFile: "plop/templates/index.tsx.hbs",
       },
       {
