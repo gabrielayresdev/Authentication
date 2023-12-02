@@ -11,6 +11,7 @@
     "generate": "plop component"
   },
   "dependencies": {
+    "framer-motion": "^10.16.12",
     "handlebars": "^4.7.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
