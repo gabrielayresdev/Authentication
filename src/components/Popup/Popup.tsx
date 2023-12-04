@@ -5,9 +5,15 @@ import { AnimatePresence, motion } from "framer-motion";
 interface PopupInterface extends React.PropsWithChildren {
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  horizontalAlignment: "left" | "middle" | "right";
 }
 
-export const Popup = ({ children, show, setShow }: PopupInterface) => {
+export const Popup = ({
+  children,
+  show,
+  horizontalAlignment,
+  setShow,
+}: PopupInterface) => {
   const popupRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -17,7 +23,7 @@ export const Popup = ({ children, show, setShow }: PopupInterface) => {
       }
     }
 
-    if (show) window.addEventListener("click", handleClick);
+    if (show) setTimeout(() => window.addEventListener("click", handleClick));
     else window.removeEventListener("click", handleClick);
 
     return () => {
@@ -25,16 +31,31 @@ export const Popup = ({ children, show, setShow }: PopupInterface) => {
     };
   }, [show, setShow]);
 
+  console.log(show);
   const popup = {
     hidden: { opacity: 0, translateY: 10 },
     visible: { opacity: 1, translateY: 0 },
   };
 
+  let style;
+  switch (horizontalAlignment) {
+    case "left":
+      style = { left: "0" };
+      break;
+    case "right":
+      style = { right: "0" };
+      break;
+    default:
+      style = { alignSelf: "center" };
+      break;
+  }
+
   return (
     <AnimatePresence mode="wait" onExitComplete={() => setShow(false)}>
       <motion.div
         ref={popupRef}
-        className={styles.wrapper}
+        className={styles.popup}
+        style={style}
         variants={popup}
         initial="hidden"
         animate={show ? "visible" : "hidden"}

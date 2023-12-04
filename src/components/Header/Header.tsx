@@ -2,9 +2,14 @@ import React from "react";
 import Hamburger from "../Hamburger/Hamburger";
 import styles from "./Header.module.sass";
 import { motion } from "framer-motion";
+import Popup from "../Popup/Popup";
+import { ReactComponent as Exit } from "../../assets/exit.svg";
+import { ReactComponent as User } from "../../assets/profile.svg";
+import { ReactComponent as Gear } from "../../assets/config.svg";
 
 export const Header = () => {
   const [showMenu, setShowMenu] = React.useState(false);
+  const [showProfileOptions, setShowProfileOptions] = React.useState(false);
 
   const ul = {
     hidden: {
@@ -39,8 +44,37 @@ export const Header = () => {
         <img src="/src/assets/Logo(min).png" alt="Logo do site" />
       </div>
 
-      <div className={styles.profile}>
+      <div
+        className={styles.profile}
+        onClick={() => setShowProfileOptions(true)}
+      >
         <img src="/src/assets/profile.jpg" alt="Foto de perfil" />
+        <Popup
+          show={showProfileOptions}
+          setShow={setShowProfileOptions}
+          horizontalAlignment="right"
+        >
+          <div className={styles.profileOptions}>
+            <div className={styles.option}>
+              <div className={styles.icon}>
+                <User />
+              </div>
+              Perfil
+            </div>
+            <div className={`${styles.option} ${styles.disabled}`}>
+              <div className={styles.icon}>
+                <Gear />
+              </div>
+              Configurações
+            </div>
+            <div className={styles.option}>
+              <div className={styles.icon}>
+                <Exit />
+              </div>
+              Sair
+            </div>
+          </div>
+        </Popup>
       </div>
       <motion.div
         className={`${styles.nav} ${showMenu ? styles.active : ""}`}
