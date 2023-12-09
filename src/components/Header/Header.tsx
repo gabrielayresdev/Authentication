@@ -81,11 +81,16 @@ export const Header = () => {
         variants={container}
         initial="hidden"
         animate={showMenu ? "visible" : "hidden"}
+        onClick={({ target, currentTarget }) => {
+          console.log(target);
+          console.log(currentTarget);
+          if (currentTarget === target) setShowMenu(false);
+        }}
       >
         <motion.div className={styles.list} variants={ul}>
           <div className={styles.listItem}>Home</div>
-          <div className={styles.listItem}>Produtos</div>
-          <div className={styles.listItem}>Contato</div>
+          <div className={styles.listItem}>Mensagens</div>
+          <div className={styles.listItem}>Ajuda</div>
         </motion.div>
       </motion.div>
     </header>

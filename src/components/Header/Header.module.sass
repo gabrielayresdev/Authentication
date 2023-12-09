@@ -83,9 +83,7 @@
         width: 100%
 
         z-index: 100
-
-        pointer-events: none
-
+        
         &.active 
             opacity: 1
             transition: all .3s
@@ -110,5 +108,10 @@
             .listItem 
                 font-size: 1.25rem
                 text-transform: uppercase
+        
+    @media ( min-width: 1024px )
+        .nav 
+            .list 
+                width: 20%
 
 
