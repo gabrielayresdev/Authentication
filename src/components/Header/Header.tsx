@@ -26,6 +26,7 @@ export const Header = () => {
   const container = {
     hidden: {
       opacity: 0,
+      "pointer-events": "none",
     },
     visible: {
       opacity: 1,
@@ -33,6 +34,7 @@ export const Header = () => {
         ease: "easeOut",
         duration: 0.2,
       },
+      PointerEvents: "auto",
     },
   };
   return (
